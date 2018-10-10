@@ -3,6 +3,7 @@ package av.is.animationlib.example;
 import av.is.animationlib.AnimationLib;
 import av.is.animationlib.AnimationModifier;
 import av.is.animationlib.option.OptionDefault;
+import av.is.animationlib.option.OptionRepeat;
 
 /**
  * Created by Avis Network on 2017-07-13.
@@ -10,13 +11,14 @@ import av.is.animationlib.option.OptionDefault;
 public class ExampleAnimationRunner {
     
     public static void main(String args[]) {
-        String message = "Hello, world!!";
+        String message = "abcdefghijklmnopqrstuvwxyz";
         
-        AnimationModifier modifier = AnimationLib.getAnimationLib().createAnimation(message, System.out::println,
-                new ExampleAnimationTypingMore(message),
-                new ExampleAnimationTypingLess(message));
+        AnimationModifier modifier = AnimationLib.getAnimationLib().createAnimation(message, text -> {
+                    System.out.print('\r');
+                    System.out.print(text);
+            }, new ExampleAnimationTypingMore(message), new ExampleAnimationLowUpCase(message), new ExampleAnimationTypingLess(message));
         
-        modifier.setOption(new OptionDefault());
+        modifier.setOption(new OptionRepeat(OptionRepeat.ENDLESS_LOOP));
         
         new Thread(() -> {
             while(true) {

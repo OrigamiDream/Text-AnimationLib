@@ -14,6 +14,7 @@ public class OptionRepeat implements AnimatingOption {
     
     private int repeat;
     private int times;
+    private int index;
     
     public OptionRepeat(int repeat) {
         this.repeat = repeat;

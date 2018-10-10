@@ -111,6 +111,7 @@ public interface AnimationModifier {
         @Override
         public AnimationModifier setOption(AnimatingOption option) {
             this.option = Optional.ofNullable(option);
+            this.option.get().execute(animations);
             return this;
         }
     

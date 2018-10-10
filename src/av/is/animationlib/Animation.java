@@ -28,6 +28,8 @@ public interface Animation {
     public void finish();
     
     public void onTick();
+
+    public void onFinish();
     
     public abstract class Impl implements Animation {
         
@@ -94,13 +96,12 @@ public interface Animation {
         @Override
         public void finish() {
             setRunning(false);
+            onFinish();
             
             // Call event for cycling
             getModifier().queryCycle();
             if(getNextAnimation() != null) {
                 getNextAnimation().setRunning(true);
-                
-                System.out.println(getClass().getSimpleName() + " -> " + getNextAnimation().getClass().getSimpleName());
             }
         }
     }

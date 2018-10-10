@@ -18,12 +18,22 @@ public class ExampleAnimationTypingLess extends Animation.Impl {
     @Override
     public void onTick() {
         String content = getOriginalContent();
-        
-        animate(content.substring(0, index));
+
+        StringBuilder empty = new StringBuilder();
+        for(int i = index; i < content.length(); i++) {
+            empty.append(" ");
+        }
+
+        animate(content.substring(0, index) + empty.toString());
         index--;
         
         if(index < 0) {
             finish();
         }
+    }
+
+    @Override
+    public void onFinish() {
+        index = getOriginalContent().length();
     }
 }

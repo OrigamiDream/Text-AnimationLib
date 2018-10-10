@@ -16,12 +16,22 @@ public class ExampleAnimationTypingMore extends Animation.Impl {
     @Override
     public void onTick() {
         String content = getOriginalContent();
+
+        StringBuilder empty = new StringBuilder();
+        for(int i = index; i < content.length(); i++) {
+            empty.append(" ");
+        }
         
-        animate(content.substring(0, index));
+        animate(content.substring(0, index) + empty);
         index++;
         
         if(index == content.length() + 1) {
             finish();
         }
+    }
+
+    @Override
+    public void onFinish() {
+        index = 0;
     }
 }
