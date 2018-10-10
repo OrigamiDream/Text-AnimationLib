@@ -16,14 +16,15 @@ public class ExampleAnimationRunner {
         AnimationModifier modifier = AnimationLib.getAnimationLib().createAnimation(message, text -> {
                     System.out.print('\r');
                     System.out.print(text);
-            }, new ExampleAnimationTypingMore(message), new ExampleAnimationLowUpCase(message), new ExampleAnimationTypingLess(message));
-        
+            }, new ExampleProgressBar(""));
+
+//        modifier.setOption(new OptionDefault());
         modifier.setOption(new OptionRepeat(OptionRepeat.ENDLESS_LOOP));
         
         new Thread(() -> {
             while(true) {
                 try {
-                    Thread.sleep(50L);
+                    Thread.sleep(25L);
                 } catch(InterruptedException e) {
                     e.printStackTrace();
                 }
